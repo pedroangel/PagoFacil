@@ -1,0 +1,32 @@
+{
+  "name": "pagofacil",
+  "version": "1.0.0",
+  "description": "Prueba Técnica - BackEnd",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "PagoFacil",
+    "Referidos",
+    "Motor",
+    "Gestión",
+    "Prueba"
+  ],
+  "author": "Pedro A. Alarcon Atencio",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroangel/PagoFacil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pedroangel/PagoFacil/issues"
+  },
+  "homepage": "https://github.com/pedroangel/PagoFacil#readme"
+}
