@@ -29,6 +29,25 @@ $ npm install mysql
 $ npm install uuid
 ```
 # Base de Datos MySQL
-Utilice el servicio de
+Utilice el servicio ofrecido en el Control Panel de XAMPP v3.2.2 para levantar mi servidor MySQL en mi localhost con las credenciales mostradas a continuación:
+
+- Hostname "localhost".
+- Usuario "root"
+- Contraseña "PagoFacil2019".
+- Base de Datos "PagoFacil_Referidos".
+
+De ser necesario utilizar otras credenciales diferentes, debe hacerse el ajuste pertinente en el archivo <a href="https://github.com/pedroangel/PagoFacil/blob/master/index.js" target="_blank">index.js</a>.
 
 <img src="https://raw.githubusercontent.com/pedroangel/PagoFacil/master/Referencias/screenshots_db_datos.png" />
+
+## Importar tablas y datos de prueba
+Deben crear una Base de Datos nueva ("PagoFacil_Referidos"), descargar el archivo <a href="https://github.com/pedroangel/PagoFacil/blob/master/pagofacil_referidos.sql" target="_blank">pagofacil_referidos.sql</a> e importarlo a la nueva BD. Este paso creara las tablas utilizadas por el sistema, así como insertar algunos campos de prueba que utilice durante el desarrollo.
+
+# REQUEST y Ejecución de la API
+Para gestionar las peticiones y respuestas del servidor, utilice la aplicación <a href="https://www.getpostman.com/downloads/" target="_blank">Postman para Windows</a> 
+
+<img src="https://raw.githubusercontent.com/pedroangel/PagoFacil/master/Referencias/postman_01.png" />
+
+<img src="https://raw.githubusercontent.com/pedroangel/PagoFacil/master/Referencias/postman_02.png" />
+
+<img src="https://raw.githubusercontent.com/pedroangel/PagoFacil/master/Referencias/postman_03.png" />
