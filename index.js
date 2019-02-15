@@ -7,11 +7,22 @@ const uuidv1 = require('uuid/v1');
 
 app.use(bodyparser.json());
 
+/* Credenciales DB */
+
+//Hostname
+const db_host = "localhost";
+//Usuario
+const db_user = "root";
+//Contraseña
+const db_password = "PagoFacil2019";
+//Base de Datos
+const db_database = "PagoFacil_Referidos";
+
 var mysqlConnection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: 'PagoFacil2019',
-	database: 'PagoFacil_Referidos'
+	host: db_host,
+	user: db_user,
+	password: db_password,
+	database: db_database
 });
 
 mysqlConnection.connect((err)=>{
