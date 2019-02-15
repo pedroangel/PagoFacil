@@ -30,3 +30,5 @@ $ npm install uuid
 ```
 # Base de Datos MySQL
 Utilice el servicio de
+
+<img src="https://raw.githubusercontent.com/pedroangel/PagoFacil/master/Referencias/screenshots_db_datos.png" />
