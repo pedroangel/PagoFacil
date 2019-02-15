@@ -29,7 +29,7 @@ $ npm install mysql
 $ npm install uuid
 ```
 # Base de Datos MySQL
-Utilice el servicio ofrecido en el Control Panel de XAMPP v3.2.2 para levantar mi servidor MySQL en mi localhost con las credenciales mostradas a continuación:
+Utilice el servicio ofrecido en el Control Panel de XAMPP v3.2.2 para levantar un servidor MySQL en mi localhost con las credenciales:
 
 - Hostname "localhost".
 - Usuario "root"
@@ -51,3 +51,11 @@ Para gestionar las peticiones y respuestas del servidor, utilice la aplicación 
 <img src="https://raw.githubusercontent.com/pedroangel/PagoFacil/master/Referencias/postman_02.png" />
 
 <img src="https://raw.githubusercontent.com/pedroangel/PagoFacil/master/Referencias/postman_03.png" />
+
+
+Esta es la información básica del proceso y las herramientas usadas en el desarrollo del servicio requerido para la Prueba Técnica.
+
+Agradezco la oportunidad y el reto que represento este requerimiento, ya que es mi primera aplicación desarrollada utilizando NodeJS.
+
+De ser necesario, por favor indicarme algún otro tipo de información que deba ser aclarada de mi parte. 
+
