@@ -53,7 +53,6 @@ app.post('/usuario/registrar', (req, res) =>{
 					"Id": UUID_ID
 				}));
 			}else{
-				//console.log(err);
 				res.send(JSON.stringify({
 					"Status": "NOOK",
 					"Error": err
@@ -68,7 +67,7 @@ app.post('/usuario/registrar', (req, res) =>{
 	}
 });
 
-//Seteo de Comisión
+//Seteo de Comisión y Activacion
 app.put('/usuario/activar/:id', (req, res) =>{
 	let emp = req.body;
 	var query = "UPDATE usuario SET comision = ?, Status = 'ACTIVO' WHERE id = ?";
@@ -89,7 +88,6 @@ app.put('/usuario/activar/:id', (req, res) =>{
 				}));
 			}
 		}else{
-			//console.log(err);
 			res.send(JSON.stringify({
 				"Status": "NOOK",
 				"Error": err
@@ -111,7 +109,6 @@ app.post('/transaccion/registrar', (req, res) =>{
 				"Status": "OK"
 			}));
 		}else{
-			//console.log(err);
 			res.send(JSON.stringify({
 				"Status": "NOOK",
 				"Error": err
@@ -137,7 +134,6 @@ app.put('/transaccion/pagar/:id', (req, res) =>{
 							"Monto": rows[0].Monto
 						}));
 					}else{
-						//console.log(err);
 						res.send(JSON.stringify({
 							"Status": "NOOK",
 							"Error": err
@@ -151,7 +147,6 @@ app.put('/transaccion/pagar/:id', (req, res) =>{
 				}));
 			}
 		}else{
-			//console.log(err);
 			res.send(JSON.stringify({
 				"Status": "NOOK",
 				"Error": err
@@ -192,7 +187,6 @@ app.get('/usuario/saldo/:id', (req, res) =>{
 			}));
 
 		}else{
-			//console.log(err);
 			res.send(JSON.stringify({
 				"Status": "NOOK",
 				"Error": err
