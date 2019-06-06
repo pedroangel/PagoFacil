@@ -40,8 +40,8 @@ app.listen(3000);
 app.post('/usuario/registrar', (req, res) =>{
 	let emp = req.body;
 	var UUID_ID = uuidv1();
-	var query = "INSERT INTO `usuario` (`id`, `Nombre`, `Apellido`, `DocumentoIdentidad`, `TipoDocumento`, `Email`, `Password`, `DOB`, `Sexo`, `NombreBanco`, `NumeroCuenta`, `TipoCuenta`, `EmailContactoBanco`) \
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	var query = `INSERT INTO usuario (id, Nombre, Apellido, DocumentoIdentidad, TipoDocumento, Email, Password, DOB, Sexo, NombreBanco, NumeroCuenta, TipoCuenta, EmailContactoBanco) 
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
 
 	if(emp.Nombre && emp.Nombre !=='' && emp.Apellido && emp.Apellido !=='' && emp.DocumentoIdentidad && emp.DocumentoIdentidad !=='' && emp.TipoDocumento && emp.TipoDocumento !=='' && emp.Email && emp.Email !=='' && emp.Password && emp.Password !=='' && emp.DOB && emp.DOB !==''){
@@ -99,8 +99,8 @@ app.put('/usuario/activar/:id', (req, res) =>{
 //Insertar Transaccion
 app.post('/transaccion/registrar', (req, res) =>{
 	let emp = req.body;
-	var query = "INSERT INTO `Transacciones` (`IdTrx`, `Monto`, `TipoMoneda`, `Detalle`, `Comercio`, `IdReferidor`, `FechaTransaccion`) \
-	VALUES (?, ?, ?, ?, ?, ?, STR_TO_DATE(?, '%d/%m/%Y'))";
+	var query = `INSERT INTO Transacciones (IdTrx, Monto, TipoMoneda, Detalle, Comercio, IdReferidor, FechaTransaccion)
+	VALUES (?, ?, ?, ?, ?, ?, STR_TO_DATE(?, '%d/%m/%Y'))`;
 
 	mysqlConnection.query(query, [emp.IdTrx, emp.Monto, emp.TipoMoneda, emp.Detalle, emp.Comercio, emp.IdReferidor, emp.FechaTransaccion], (err, rows, fields)=>{
 		if(!err){
@@ -157,22 +157,22 @@ app.put('/transaccion/pagar/:id', (req, res) =>{
 
 //Calcular Saldo Mensual
 app.get('/usuario/saldo/:id', (req, res) =>{
-	let emp = req.body;
-	var query = "SELECT DATE_FORMAT(a.FechaTransaccion,'%m%Y') AS FECHA, SUM(a.Monto * b.Comision) AS ACUMULADA, \
-					SUM(CASE WHEN a.Pagada = 'Y' THEN (a.Monto * b.Comision) ELSE 0 END) AS PAGADA,  \
-					SUM(CASE WHEN a.Pagada = 'N' THEN (a.Monto * b.Comision) ELSE 0 END) AS PENDIENTE  \
-				FROM transacciones a  \
-				INNER JOIN usuario b  \
-					ON a.idReferidor = b.id  \
-				WHERE a.idReferidor = ?  \
-				GROUP BY year(a.FechaTransaccion), month(a.FechaTransaccion)";
+
+	var query = `SELECT DATE_FORMAT(a.FechaTransaccion,'%m%Y') AS FECHA, SUM(a.Monto * b.Comision) AS ACUMULADA, 
+					SUM(CASE WHEN a.Pagada = 'Y' THEN (a.Monto * b.Comision) ELSE 0 END) AS PAGADA,  
+					SUM(CASE WHEN a.Pagada = 'N' THEN (a.Monto * b.Comision) ELSE 0 END) AS PENDIENTE  
+				FROM transacciones a  
+				INNER JOIN usuario b  
+					ON a.idReferidor = b.id  
+				WHERE a.idReferidor = ?  
+				GROUP BY year(a.FechaTransaccion), month(a.FechaTransaccion)`;
 
 	mysqlConnection.query(query, [req.params.id], (err, rows, fields)=>{
 		if(!err){
 
 			
 			var json_saldo = {};
-	        
+
 			rows.forEach(function (row) {
 		        json_saldo[row.FECHA] = { 
 		        	"ComisionAcumulada" : row.ACUMULADA,
