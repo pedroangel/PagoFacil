@@ -196,46 +196,4 @@ app.get('/usuario/saldo/:id', (req, res) =>{
 		}
 	});
 });
- 
 
- //Calcular Saldo Mensual
-app.get('/usuario/saldo/:id', (req, res) =>{
-
-	let emp = req.body;
-
-	var query = `SELECT DATE_FORMAT(a.FechaTransaccion,'%m%Y') AS FECHA, SUM(a.Monto * b.Comision) AS ACUMULADA, 
-					SUM(CASE WHEN a.Pagada = 'Y' THEN (a.Monto * b.Comision) ELSE 0 END) AS PAGADA,  
-					SUM(CASE WHEN a.Pagada = 'N' THEN (a.Monto * b.Comision) ELSE 0 END) AS PENDIENTE  
-				FROM transacciones a  
-				INNER JOIN usuario b  
-					ON a.idReferidor = b.id  
-				WHERE a.idReferidor = ?  
-				GROUP BY year(a.FechaTransaccion), month(a.FechaTransaccion)`;
-
-	mysqlConnection.query(query, [req.params.id], (err, rows, fields)=>{
-		if(!err){
-
-			
-			var json_saldo = {};
-
-			rows.forEach(function (row) {
-		        json_saldo[row.FECHA] = { 
-		        	"ComisionAcumulada" : row.ACUMULADA,
-		        	"ComisionPagada" : row.PAGADA,
-		        	"SaldoAPagar" : row.PENDIENTE
-		      	};
-		    });
-
-			res.send(JSON.stringify({
-				"IdUsuario" : req.params.id,
-				"Saldo" : json_saldo
-			}));
-
-		}else{
-			res.send(JSON.stringify({
-				"Status": "NOOK",
-				"Error": err
-			}));
-		}
-	});
-});
